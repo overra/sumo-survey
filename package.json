@@ -1,0 +1,26 @@
+{
+  "name": "sumo-survey",
+  "version": "0.0.1",
+  "description": "A super simple survey system",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/overra/sumo-survey.git"
+  },
+  "keywords": [
+    "surveys"
+  ],
+  "author": "Adam Snodgrass <overra@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/overra/sumo-survey/issues"
+  },
+  "homepage": "https://github.com/overra/sumo-survey",
+  "dependencies": {
+    "babel": "^5.8.21",
+    "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "mysql": "^2.8.0",
+    "sequelize": "^3.5.1"
+  }
+}
