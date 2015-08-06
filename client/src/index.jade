@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    base(href='/')
+    meta(charset='utf8')
+    title SumoSurveys
+    link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
+    link(rel='stylesheet' href='/application.css')
+  body
+    md-content
+      md-toolbar(ng-cloak)
+        .md-toolbar-tools.center-content
+          h2(flex) SumoSurveys
+          span(flex)
+          md-button.md-icon-button(aria-label='Login' ng-href='/login')
+            md-icon account_circle
+    ui-view
+    
+    script(src='/application.js')

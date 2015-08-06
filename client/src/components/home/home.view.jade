@@ -1,0 +1,8 @@
+md-content.md-padding.center-content
+  md-card
+    md-card-content
+      h2.md-title(ng-bind='home.question.question')
+      form(ng-submit='submit()')
+        md-radio-group(ng-model='home.answer')
+          md-radio-button(ng-repeat='answer in home.question.answers' ng-value='answer') {{answer}}
+        md-button.md-primary Submit
