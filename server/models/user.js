@@ -45,9 +45,7 @@ module.exports = function (sequelize, DataTypes) {
   }
 
   function hashIfChanged(user, options) {
-    if (!user.changed('password')) {
-      return;
-    }
+    if (user.role !== 'admin' || !user.changed('password')) return;
 
     return hashPassword(user.password).then(function (hash) {
       user.password = hash;
