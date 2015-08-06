@@ -2,6 +2,8 @@
 
 var config = require('../config');
 var mysql = require('mysql');
+var prompt = require('prompt');
+var Sequelize = require('sequelize');
 
 var db = mysql.createConnection({
   host: config.db.host,
@@ -21,10 +23,72 @@ function onDbConnected(err) {
 }
 
 function onDbCreated(err) {
- if (err) {
+  if (err) {
    return console.error('Failed to create the database "%s"!', config.db.name);
- }
+  }
 
- console.log('Database successfully created!');
- db.end();
+  console.log('Database successfully created!');
+  db.end();
+
+  console.log('Let\'s create an admin user!'.blue);
+  db = new Sequelize(config.db.name, config.db.user, config.db.password, {
+   logging: function(){}
+  });
+
+  getUserInfo();
+}
+
+var userSchema = {
+  properties: {
+    username: {
+      description: 'Username:'.white,
+      required: true
+    },
+    password: {
+      description: 'Password:'.white,
+      required: true,
+      hidden: true
+    }
+  }
+};
+
+prompt.message = '';
+prompt.delimiter = '';
+
+function getUserInfo() {
+  prompt.start();
+  prompt.get(userSchema, createUser);
+}
+
+function createUser(err, result) {
+  if (err) {
+    return console.error(err.message);
+  }
+
+  var User = db.import('../server/models/user.js');
+
+  db.sync().then(function () {
+    var user = User.build({
+      username: result.username,
+      password: result.password,
+      role: 'admin'
+    });
+
+    user.save().then(function () {
+      console.log('User created!');
+      db.close();
+    }).catch(function (err) {
+      console.log('Failed to create user:'.red);
+
+      if (err.errors.length > 0) {
+        err.errors.map(function(error) {
+          console.error(error.message);
+        });
+      } else {
+        console.error(err.message);
+      }
+
+      getUserInfo();
+    })
+  });
 }
