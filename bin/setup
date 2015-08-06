@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+var config = require('../config');
+var mysql = require('mysql');
+
+var db = mysql.createConnection({
+  host: config.db.host,
+  port: config.db.port,
+  user: config.db.user,
+  password: config.db.password
+});
+
+db.connect(onDbConnected);
+
+function onDbConnected(err) {
+  if (err) {
+    return console.error('Failed to connect to MySQL!');
+  }
+
+  db.query('CREATE DATABASE IF NOT EXISTS ' + config.db.name, onDbCreated);
+}
+
+function onDbCreated(err) {
+ if (err) {
+   return console.error('Failed to create the database "%s"!', config.db.name);
+ }
+
+ console.log('Database successfully created!');
+ db.end();
+}
