@@ -1,0 +1,10 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 3306,
+    "user": "demo",
+    "password": "demo",
+    "name": "sumo_survey"
+  },
+  "jwtSecret": "0ab7b739dafd5c3bbe1cbb4c7cd6b2d38428dc86"
+}
