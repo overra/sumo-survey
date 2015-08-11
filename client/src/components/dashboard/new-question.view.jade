@@ -1,0 +1,14 @@
+md-card
+  md-card-content
+    h1.md-title New Survey Question
+    form(ng-submit='question.submit()')
+      md-input-container
+        label Question
+        input(ng-model='question.question')
+      md-input-container(ng-repeat='choice in question.choices track by $index')
+        label Choice {{$index + 1}}
+        input(ng-model='choice.text')
+      div(layout='row')
+        md-button.md-raised.md-accent(type='button' ng-click='question.addChoice()') Add choice
+        span(flex)
+        md-button.md-raised.md-primary(type='submit') Save

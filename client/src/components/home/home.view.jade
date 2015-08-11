@@ -1,8 +1,21 @@
-md-content.md-padding.center-content
-  md-card
-    md-card-content
+md-card
+  md-card-content
+    div(ng-if='home.question === false' layout='row')
+      span(flex)
+      div(layout='column' layout-align='center center')
+        md-progress-circular(md-mode='indeterminate')
+        h2 Thinking of a question..
+      span(flex)
+    div(ng-if='home.question === null' layout='row')
+      span(flex)
+      div(layout='column' layout-align='center center')
+        h2.md-title We're out of questions!
+        p You've either answered all our questions or we haven't added any yet. 
+      span(flex)
+
+    div(ng-if='home.question')
       h2.md-title(ng-bind='home.question.question')
-      form(ng-submit='submit()')
-        md-radio-group(ng-model='home.answer')
-          md-radio-button(ng-repeat='answer in home.question.answers' ng-value='answer') {{answer}}
+      form(ng-submit='home.submit()')
+        md-radio-group(ng-model='home.choice')
+          md-radio-button(ng-repeat='choice in home.choices' ng-value='choice') {{choice.choice}}
         md-button.md-primary Submit

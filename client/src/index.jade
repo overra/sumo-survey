@@ -3,17 +3,39 @@ html
   head
     base(href='/')
     meta(charset='utf8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
     title SumoSurveys
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
     link(rel='stylesheet' href='/application.css')
-  body
+  body(ng-controller='AppController as app')
     md-content
       md-toolbar(ng-cloak)
         .md-toolbar-tools.center-content
-          h2(flex) SumoSurveys
+          md-button.md-icon-button(aria-label='Home' href='/')
+            md-icon home
+          h2(flex): a(ng-href='/') SumoSurveys
           span(flex)
-          md-button.md-icon-button(aria-label='Login' ng-href='/login')
-            md-icon account_circle
-    ui-view
+          div(ng-if='app.isAuthenticated()')
+            md-menu(md-position-mode='target-right target')
+              md-button.md-icon-button(aria-label='Open Menu' ng-click='$mdOpenMenu()')
+                md-icon menu
+              md-menu-content(width='3')
+                md-menu-item
+                  md-button(aria-label='Survey Results' ng-click='' ng-href='/dashboard')
+                    p Survey Results
+                    md-icon(md-menu-align-target) assignment
+                md-menu-item
+                  md-button(aria-label='New Question' ng-click='' ng-href='/questions/new')
+                    p New Question
+                    md-icon(md-menu-align-target) add_circle
+                md-menu-item
+                  md-button(aria-label='Logout' ng-click='app.logout()')
+                    p Logout
+                    md-icon(md-menu-align-target) exit_to_app
+                  
+          div(ng-if='!app.isAuthenticated()')
+            md-button.md-icon-button(aria-label='Login' ng-href='/login')
+              md-icon account_circle
+    md-content.md-padding.center-content(ui-view)
     
     script(src='/application.js')

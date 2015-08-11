@@ -1,6 +1,23 @@
 .center-content {
   width: 800px;
   margin: auto;
+
+  @media screen and (max-width: 600px) {
+    width: auto;
+  }
+}
+
+.question {
+  h3 {
+    margin-top: 0;
+  }
+  h2 {
+    margin-bottom: 0;
+  }
+}
+
+.choice {
+  margin-bottom: 20px;
 }
 
 [ng-cloak] {

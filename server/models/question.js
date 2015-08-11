@@ -14,6 +14,7 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function (models) {
+        Question.hasMany(models.Choice);
         Question.hasMany(models.Answer);
       }
     }

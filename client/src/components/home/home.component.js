@@ -14,6 +14,6 @@ function componentConfig($stateProvider) {
 
 componentConfig.$inject = ['$stateProvider'];
 
-angular.module('SumoSurveys.home', ['ui.router'])
+angular.module('SumoSurveys.home', ['ui.router', 'SumoSurveys.questions'])
   .config(componentConfig)
   .controller('HomeController', HomeController);

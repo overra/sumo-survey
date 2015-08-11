@@ -1,5 +1,6 @@
 'use strict';
 
+import '../auth/auth.component';
 import LoginController from './login.controller';
 
 function componentConfig($stateProvider) {
@@ -14,6 +15,6 @@ function componentConfig($stateProvider) {
 
 componentConfig.$inject = ['$stateProvider'];
 
-angular.module('SumoSurveys.login', ['ui.router'])
+angular.module('SumoSurveys.login', ['ui.router', 'SumoSurveys.auth'])
   .config(componentConfig)
   .controller('LoginController', LoginController);

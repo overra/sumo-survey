@@ -1,4 +1,12 @@
-md-content.md-padding.center-content
-  md-card
-    md-card-content
-      h2 Login
+md-card
+  md-card-content
+    h2 Login
+    form(ng-submit='login.submit(login.username, login.password)')
+      md-input-container
+        label Username
+        input(ng-model='login.username' type='text')
+      md-input-container
+        label Password
+        input(ng-model='login.password' type='password')
+      span(ng-show='login.error') Incorrect credentials.
+      md-button.md-primary.md-raised Login

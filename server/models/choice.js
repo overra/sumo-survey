@@ -1,22 +1,23 @@
 'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-  var Response = sequelize.define('Response', {
-    questionId: {
+  var Choice = sequelize.define('Choice', {
+    id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      autoIncrement: true,
+      primaryKey: true
     },
-    anwserId: {
-      type: DataTypes.INTEGER,
+    choice: {
+      type: DataTypes.STRING,
       allowNull: false
     }
   }, {
     classMethods: {
       associate: function (models) {
-        Response.belongsTo(models.User);
+        Choice.belongsTo(models.Question);
       }
     }
   });
 
-  return Response;
+  return Choice;
 };
