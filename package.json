@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/overra/sumo-survey",
   "dependencies": {
+    "angular": "^1.4.3",
     "angular-jwt": "0.0.9",
+    "angular-material": "^0.10.1",
     "angular-messages": "^1.4.3",
     "angular-resource": "^1.4.3",
     "angular-ui-router": "^0.2.15",
