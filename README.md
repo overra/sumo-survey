@@ -11,6 +11,8 @@ The following are the exact versions of the dependencies installed.
 - npm 2.12.1
 - gulp.js 3.9.0
 
+On Ubuntu 14.04 you can install these dependencies with the commands below.
+
 ```
 # Install git, MySQL and built essentials
 sudo apt-get install git mysql-server-5.5 build-essential
