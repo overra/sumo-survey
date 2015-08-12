@@ -26,6 +26,9 @@ gulp.task('scripts', scripts);
 gulp.task('views', views);
 gulp.task('styles', styles);
 gulp.task('watch', watch);
+gulp.task('default', function (done) {
+  sequence(['scripts', 'styles', 'views'], done);
+});
 
 function scripts () {
   return bundler.bundle()
