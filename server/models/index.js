@@ -7,7 +7,8 @@ import {db as config} from '../../config';
 
 var sequelize = new Sequelize(config.name, config.user, config.password, {
   host: config.host,
-  port: config.port
+  port: config.port,
+  logging: function(){}
 });
 var db = {};
 
