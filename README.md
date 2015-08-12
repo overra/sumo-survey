@@ -44,6 +44,9 @@ mv config.sample.json config.json
 # run the following to create the database and survey admin account
 ./bin/setup
 
-# run the following to build and run the app
-gulp watch
+# render views, browserify scripts, compile styles
+gulp
+
+# start the app
+node index.js
 ```
