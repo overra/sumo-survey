@@ -19,19 +19,22 @@ html
             md-menu(md-position-mode='target-right target')
               md-button.md-icon-button(aria-label='Open Menu' ng-click='$mdOpenMenu()')
                 md-icon menu
-              md-menu-content(width='3')
+              md-menu-content(width='4')
                 md-menu-item
-                  md-button(aria-label='Survey Results' ng-click='' ng-href='/dashboard')
-                    p Survey Results
-                    md-icon(md-menu-align-target) assignment
+                  md-button(aria-label='Survey Results' ng-click='app.go("questions.list")')
+                    div(layout='row')
+                      p(flex) Survey Results
+                      md-icon(md-menu-align-target) assignment
                 md-menu-item
-                  md-button(aria-label='New Question' ng-click='' ng-href='/questions/new')
-                    p New Question
-                    md-icon(md-menu-align-target) add_circle
+                  md-button(aria-label='New Question' ng-click='app.go("questions.new")')
+                    div(layout='row')
+                      p(flex) New Question
+                      md-icon(md-menu-align-target) add_circle
                 md-menu-item
                   md-button(aria-label='Logout' ng-click='app.logout()')
-                    p Logout
-                    md-icon(md-menu-align-target) exit_to_app
+                    div(layout='row')
+                      p(flex) Logout
+                      md-icon(md-menu-align-target) exit_to_app
                   
           div(ng-if='!app.isAuthenticated()')
             md-button.md-icon-button(aria-label='Login' ng-href='/login')

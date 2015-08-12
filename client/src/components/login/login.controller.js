@@ -7,10 +7,9 @@ export default class LoginController {
     this.isAuthenticated = AuthService.isAuthenticated;
     this.user = () => AuthService.user;
     this.submit = function (username, password)  {
-      // this.error = true;
       AuthService.login(username, password).then(
         () => {
-          $state.go('dashboard.list');
+          $state.go('questions.list');
         },
         err => {
           this.error = true;

@@ -1,0 +1,16 @@
+md-dialog
+  md-toolbar
+    .md-toolbar-tools
+      h2(ng-bind='question.question.question')
+  md-dialog-content
+    h3.md-subhead 
+      ng-pluralize(
+        count='question.getTotalAnswers(question.question)'
+        when='{"0": "No one has answered.", "one": "One person has answered.", "other": "{} people have answered."}'  
+      )
+    .choice(ng-repeat='choice in question.question.choices') 
+      div(layout='row')
+        span {{choice.choice}}
+        span(flex) 
+        span {{question.getTotalOfChoice(question.question, choice)}} ({{question.getPercentage(question.question, choice)}}%)
+      md-progress-linear(md-mode='determinate' value='{{question.getPercentage(question.question, choice)}}')

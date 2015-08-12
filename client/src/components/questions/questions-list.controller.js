@@ -2,8 +2,8 @@
 
 import {where} from 'lodash';
 
-export default class DashboardController {
-  constructor(QuestionsService) {
+export default class QuestionsListController {
+  constructor(QuestionsService, $mdDialog) {
     var self = this;
     QuestionsService.list(questions => {
       this.questions = questions
@@ -27,7 +27,21 @@ export default class DashboardController {
 
       return Math.round(choiceCount / answerCount * 10000) / 100;
     };
+
+    this.showDialog = function(ev, question) {
+      $mdDialog.show({
+        controller: 'QuestionDetailsController',
+        controllerAs: 'question',
+        templateUrl: '/components/questions/question-details.view.html',
+        locals: {
+          question: question
+        },
+        clickOutsideToClose: true,
+        targetEvent: ev,
+        parent: angular.element(document.body)
+      });
+    };
   }
 }
 
-DashboardController.$inject = ['QuestionsService'];
+QuestionsListController.$inject = ['QuestionsService', '$mdDialog'];

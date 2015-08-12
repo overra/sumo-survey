@@ -7,7 +7,6 @@ import 'angular-ui-router';
 import './components/auth/auth.component';
 import './components/home/home.component';
 import './components/login/login.component';
-import './components/dashboard/dashboard.component';
 import './components/questions/questions.component';
 
 function appConfig($locationProvider, $urlRouterProvider) {
@@ -20,12 +19,13 @@ appConfig.$inject = [
   '$urlRouterProvider'
 ];
 
-function AppController(AuthService) {
+function AppController(AuthService, $state) {
   this.isAuthenticated = AuthService.isAuthenticated;
   this.logout = AuthService.logout;
+  this.go = $state.go;
 }
 
-AppController.$inject = ['AuthService'];
+AppController.$inject = ['AuthService', '$state'];
 
 angular.module('SumoSurveys', [
   'ngMessages',
@@ -33,7 +33,6 @@ angular.module('SumoSurveys', [
   'SumoSurveys.auth',
   'SumoSurveys.home',
   'SumoSurveys.login',
-  'SumoSurveys.dashboard',
   'SumoSurveys.questions'
 ]).config(appConfig)
   .controller('AppController', AppController);

@@ -1,6 +1,6 @@
 'use strict';
 
-export default class NewQuestionController {
+export default class QuestionsNewController {
   constructor($http, $state) {
     this.question = '';
     this.choices = [{text: ''}, {text: ''}];
@@ -15,12 +15,10 @@ export default class NewQuestionController {
           choices: this.choices.filter(choice => !!choice.text)
         }
       }).then(function (response) {
-        $state.go('dashboard.list');
-      }, function (response) {
-        console.log('fail', response);
-      })
+        $state.go('questions.list');
+      });
     }
   }
 }
 
-NewQuestionController.$inject = ['$http', '$state'];
+QuestionsNewController.$inject = ['$http', '$state'];

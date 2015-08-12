@@ -4,10 +4,27 @@
 
   @media screen and (max-width: 600px) {
     width: auto;
+    margin: 0;
   }
 }
 
 .question {
+  max-height: 200px;
+  min-height: 200px;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    display: block;
+    background-image: linear-gradient(0deg, #FFF 25%, rgba(255, 255, 255, 0));
+    content: '';
+    height: 70px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
   h3 {
     margin-top: 0;
   }
@@ -18,6 +35,10 @@
 
 .choice {
   margin-bottom: 20px;
+}
+
+.center-text {
+  text-align: center;
 }
 
 [ng-cloak] {

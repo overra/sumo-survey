@@ -1,14 +1,24 @@
 md-card
   md-card-content
     h1.md-title New Survey Question
-    form(ng-submit='question.submit()')
+    form(ng-submit='question.submit()' name='questionForm')
       md-input-container
         label Question
-        input(ng-model='question.question')
-      md-input-container(ng-repeat='choice in question.choices track by $index')
-        label Choice {{$index + 1}}
-        input(ng-model='choice.text')
+        input(ng-model='question.question' required type='text' name='question')
+        div(ng-messages='questionForm.question.$error' ng-show='questionForm.question.$touched')
+          div(ng-message='required') This is required!
+      div(ng-repeat='choice in question.choices track by $index')
+        md-input-container(ng-if='$index < 2')
+          label Choice {{$index + 1}}
+          input(ng-model='choice.text' required type='text' name='choice{{$index}}')
+          div(ng-messages='questionForm["choice" + $index].$error' ng-show='questionForm["choice" + $index].$touched')
+            div(ng-message='required') At least two (2) questions are required.
+
+        md-input-container(ng-if='$index >= 2')
+          label Choice {{$index + 1}}
+          input(ng-model='choice.text' type='text')
+          
       div(layout='row')
-        md-button.md-raised.md-accent(type='button' ng-click='question.addChoice()') Add choice
+        md-button.md-raised(type='button' ng-click='question.addChoice()') Add choice
         span(flex)
         md-button.md-raised.md-primary(type='submit') Save

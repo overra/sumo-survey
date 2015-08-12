@@ -1,18 +1,26 @@
-//- h1.md-headline Questions &amp; Answers
-div(layout='row' layout-sm='column' layout-align='stretch center' layout-wrap)
-  div(ng-repeat='question in dashboard.questions' flex='50' flex-sm='100')
-    md-card
+div(ng-if='questions.questions.length === 0')
+  md-card
+    md-card-content
+      .center-text
+        h2.md-title Looks like you haven't added any questions yet.
+        md-button.md-primary.md-raised(ng-href='/questions/new') Create one now!
+
+div(layout='row' layout-sm='column' layout-align='stretch center' layout-wrap ng-if='questions.questions.length > 0')
+  div(ng-repeat='question in questions.questions' flex='50' flex-sm='100')
+    md-card(ng-click='questions.showDialog($event, question)')
       md-card-content.question
         header
           h2.md-title(ng-bind='question.question')
           h3.md-subhead 
             ng-pluralize(
-              count='dashboard.getTotalAnswers(question)'
+              count='questions.getTotalAnswers(question)'
               when='{"0": "No one has answered.", "one": "One person has answered.", "other": "{} people have answered."}'  
             )
         .choice(ng-repeat='choice in question.choices') 
           div(layout='row')
             span {{choice.choice}}
             span(flex) 
-            span {{dashboard.getTotalOfChoice(question, choice)}} ({{dashboard.getPercentage(question, choice)}}%)
-          md-progress-linear(md-mode='determinate' value='{{dashboard.getPercentage(question, choice)}}')
+            span {{questions.getTotalOfChoice(question, choice)}} ({{questions.getPercentage(question, choice)}}%)
+          md-progress-linear(md-mode='determinate' value='{{questions.getPercentage(question, choice)}}')
+      .md-actions(layout='row' layout-align='center center')
+        md-button(flex) View details  
