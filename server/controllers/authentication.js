@@ -3,9 +3,6 @@
 import jwt from 'jsonwebtoken';
 import {jwtSecret} from '../../config';
 import {User} from '../models';
-import debug from 'debug';
-
-let log = debug('ss:auth');
 
 const incorrectCredentials = {
   success: false,
@@ -75,7 +72,6 @@ function getUserFromHeader(header) {
       user: jwt.verify(token, jwtSecret)
     };
   } catch (e) {
-    console.log(token)
     return null;
   }
 }
